@@ -76,83 +76,88 @@ function App() {
     }
   };
 
+  const deleteTarget = async (id: number) => {
+    try {
+      console.log('Deleting target with id:', id);
+      await requestBase.delete(`Targets/${id}`);
+      setTargets(targets.filter(target => target.id !== id));
+    } catch (error) {
+      console.error('Error deleting target:', error);
+    }
+  };
+
+  const deleteTodo = async (id: number) => {
+    try {
+      console.log('Deleting todo with id:', id);
+      await requestBase.delete(`Todo/${id}`);
+      setTodos(todos.filter(todo => todo.id !== id));
+    } catch (error) {
+      console.error('Error deleting todo:', error);
+    }
+  };
+
   useEffect(() => {
     getData();
   }, []);
 
   return (
-    <div>
-      <h1>Todo App</h1>
-
-      <h2>Add Target</h2>
+    <div className='Main'>
+      <h1>CheckPoint</h1>
+  
+      <h2>Target</h2>
       <input
         type="text"
         placeholder="Title"
         value={newTarget.title}
-        onChange={(e) => {
-          console.log('Target title changed:', e.target.value);
-          setNewTarget({ ...newTarget, title: e.target.value });
-        }}
+        onChange={(e) => setNewTarget({ ...newTarget, title: e.target.value })}
       />
       <input
         type="text"
         placeholder="Description"
         value={newTarget.description}
-        onChange={(e) => {
-          console.log('Target description changed:', e.target.value);
-          setNewTarget({ ...newTarget, description: e.target.value });
-        }}
+        onChange={(e) => setNewTarget({ ...newTarget, description: e.target.value })}
       />
       <button onClick={postTarget}>Add Target</button>
-
-      <h2>Add Todo</h2>
+  
+      <h2>Todo</h2>
       <input
         type="text"
         placeholder="Title"
         value={newTodo.title}
-        onChange={(e) => {
-          console.log('Todo title changed:', e.target.value);
-          setNewTodo({ ...newTodo, title: e.target.value });
-        }}
+        onChange={(e) => setNewTodo({ ...newTodo, title: e.target.value })}
       />
       <input
         type="text"
         placeholder="Description"
         value={newTodo.description}
-        onChange={(e) => {
-          console.log('Todo description changed:', e.target.value);
-          setNewTodo({ ...newTodo, description: e.target.value });
-        }}
+        onChange={(e) => setNewTodo({ ...newTodo, description: e.target.value })}
       />
       <input
         type="number"
         placeholder="Target ID"
         value={newTodo.targetId}
-        onChange={(e) => {
-          console.log('Target ID changed:', e.target.value);
-          setNewTodo({ ...newTodo, targetId: Number(e.target.value) });
-        }}
+        onChange={(e) => setNewTodo({ ...newTodo, targetId: parseInt(e.target.value) })}
       />
       <button onClick={postTodo}>Add Todo</button>
 
       <h2>Targets</h2>
-      <ul>
-        {targets.map((target) => (
-          <li key={target.id}>
-            {target.title}: {target.description}
-          </li>
-        ))}
-      </ul>
-
+      {targets.map((target) => (
+        <div key={target.id}>
+          <h3>{target.title}</h3>
+          <p>{target.description}</p>
+          <button onClick={() => deleteTarget(target.id)}>Delete Target</button>
+        </div>
+      ))}
+  
       <h2>Todos</h2>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            {todo.title} (Target ID: {todo.targetId}): {todo.description}
-          </li>
-        ))}
-      </ul>
-    </div>
+      {todos.map((todo) => (
+        <div key={todo.id}>
+          <h3>{todo.title} (ID: {todo.id})</h3>
+          <p>{todo.description}</p>
+          <button onClick={() => deleteTodo(todo.id)}>Delete Todo</button>
+        </div>
+      ))}
+      </div>
   );
 }
 
