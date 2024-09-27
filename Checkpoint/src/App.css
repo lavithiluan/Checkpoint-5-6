@@ -5,11 +5,19 @@
   text-align: center;
 }
 
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background: radial-gradient(black, transparent);
+}
+
 
 
 
 .Main {
-  display: flex;
   flex-direction: column;
   font-family: Arial, sans-serif;
   padding: 20px;
@@ -47,5 +55,5 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #4c4ba1;
 }

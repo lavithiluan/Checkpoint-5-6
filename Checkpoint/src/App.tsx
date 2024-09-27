@@ -135,7 +135,7 @@ function App() {
     <div className="Main">
       <h1>Api TODOs</h1>
 
-      <h2>Target</h2>
+      <h2>TARGETS</h2>
       <input
         type="text"
         placeholder="Digite o titulo aqui..."
@@ -152,7 +152,7 @@ function App() {
       />
       <button onClick={postTarget}>Add Target</button>
 
-      <h2>Todo</h2>
+      <h2>TODOs</h2>
       <input
         type="text"
         placeholder="Digite o titulo aqui..."
@@ -177,7 +177,7 @@ function App() {
       />
       <button onClick={postTodo}>Add Todo</button>
 
-      <h2>Targets</h2>
+      <h2>TARGETS</h2>
       {targets.map((target) => (
         <div key={target.id}>
           {editingTarget && editingTarget.id === target.id ? (
@@ -203,7 +203,7 @@ function App() {
                 }
               />
               <button onClick={() => updateTarget(target.id, editingTarget)}>
-                Save Target
+                Salvar Target
               </button>
               <button onClick={() => setEditingTarget(null)}>Cancel</button>
             </>
@@ -224,7 +224,7 @@ function App() {
         </div>
       ))}
 
-      <h2>Todos</h2>
+      <h2>TODOs</h2>
       {todos.map((todo) => (
         <div key={todo.id}>
           {editingTodo && editingTodo.id === todo.id ? (
@@ -257,7 +257,7 @@ function App() {
                 }
               />
               <button onClick={() => updateTodo(todo.id, editingTodo)}>
-                Save Todo
+                Salvar Todo
               </button>
               <button onClick={() => setEditingTodo(null)}>Cancel</button>
             </>
