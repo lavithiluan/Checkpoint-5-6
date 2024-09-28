@@ -167,14 +167,19 @@ function App() {
           setNewTodo({ ...newTodo, description: e.target.value })
         }
       />
-      <input
-        type="number"
-        placeholder="Target ID"
+      <select
         value={newTodo.targetId}
         onChange={(e) =>
           setNewTodo({ ...newTodo, targetId: parseInt(e.target.value) })
         }
-      />
+      >
+        <option value={0}>Select Target</option>
+        {targets.map((target) => (
+          <option key={target.id} value={target.id}>
+            {target.title}
+          </option>
+        ))}
+      </select>
       <button onClick={postTodo}>Add Todo</button>
 
       <h2>TARGETS</h2>
@@ -246,8 +251,7 @@ function App() {
                   })
                 }
               />
-              <input
-                type="number"
+              <select
                 value={editingTodo.targetId}
                 onChange={(e) =>
                   setEditingTodo({
@@ -255,7 +259,14 @@ function App() {
                     targetId: parseInt(e.target.value),
                   })
                 }
-              />
+              >
+                <option value={0}>Select Target</option>
+                {targets.map((target) => (
+                  <option key={target.id} value={target.id}>
+                    {target.title}
+                  </option>
+                ))}
+              </select>
               <button onClick={() => updateTodo(todo.id, editingTodo)}>
                 Salvar Todo
               </button>
@@ -267,7 +278,10 @@ function App() {
                 {todo.title} (ID: {todo.id})
               </h3>
               <p>{todo.description}</p>
-              <p>Target ID: {todo.targetId}</p>
+              <p>
+                Target ID:{" "}
+                {targets.find((target) => target.id === todo.targetId)?.title}
+              </p>
               <button onClick={() => setEditingTodo(todo)}>Editar Todo</button>
               <button onClick={() => deleteTodo(todo.id)}>Deletar Todo</button>
             </>

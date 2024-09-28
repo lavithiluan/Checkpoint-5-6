@@ -59,6 +59,20 @@ button {
   color: white;
 }
 
+select {
+  display: block;
+  margin-bottom: 10px;
+  padding: 10px;
+  color: #000000;
+  font-weight: bold;
+  font-size: 16px;
+  border: 1px solid #00000000;
+  border-radius: 4px;
+  width: 300px;
+  font-weight: bold;
+  background-color: #d7dadd
+}
+
 button:hover {
   background-color: #4847a0;
 }
