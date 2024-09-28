@@ -111,6 +111,7 @@ function App() {
         targets.map((target) => (target.id === id ? response.data : target))
       );
       setEditingTarget(null); // Exit edit mode
+      await getData(); // Fetch latest data
     } catch (error) {
       console.error(`Error updating target with id: ${id}`, error);
     }
@@ -122,6 +123,7 @@ function App() {
       const response = await requestBase.put(`Todo/${id}`, updatedTodo);
       setTodos(todos.map((todo) => (todo.id === id ? response.data : todo)));
       setEditingTodo(null); // Exit edit mode
+      await getData(); // Fetch latest data
     } catch (error) {
       console.error(`Error updating todo with id: ${id}`, error);
     }
